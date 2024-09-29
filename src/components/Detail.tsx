@@ -3,7 +3,7 @@ import NavBar from './Navbar';
 import BoxDetail from './BoxDetail';
 import Footer from './Footer';
 import OpinionesDetail from './OpinionesDetail';
-import { Box, Card, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Card, Image, Text, VStack } from '@chakra-ui/react';
 import { ReactComponent as IconLocation } from '../icon/location-pin-svgrepo-com.svg';
 import { PhoneIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import '../styles/Detail.css'
@@ -136,6 +136,46 @@ const Detail: React.FC = () => {
           <OpinionesDetail/>
           <OpinionesDetail/>
           <OpinionesDetail/>
+          <div className='btn_container_detail'>
+            <Button 
+                width={'342px'} 
+                marginTop={'16px'} 
+                marginBottom={'24px'} 
+                color={'#FFFFFF'} 
+                _hover={{
+                  bgGradient: "linear(to-r, #6674F4, #FF69E2)",  // Degradado más claro en hover
+                }}
+                sx={{bgGradient: 'linear(to-r, #3540E8, #E41AD6)'}} 
+                >
+                  Reservar mesa
+            </Button>
+            <Button
+              width="342px"
+              marginTop="16px"
+              marginBottom="24px"
+              color="#FFFFFF"
+              backgroundColor="#010316" // Fondo negro
+              border="2px solid transparent" // Borde transparente para poder mostrar el degradado
+              borderRadius="8px"
+              position="relative" // Necesario para posicionar el pseudo-elemento
+              _hover={{
+                backgroundColor: '#333333', // Cambia el fondo al pasar el mouse
+              }}
+            >
+              <Box
+                position="absolute"
+                top={0}
+                left={0}
+                right={0}
+                bottom={0}
+                borderRadius="8px"
+                border="2px solid transparent"
+                bgGradient="linear(to-r, #6674F4, #FF69E2)" // Degradado para el borde
+                zIndex={-1} // Ponerlo detrás del botón
+              />
+                    Opciones de transporte
+            </Button>
+          </div>
           <Footer/>
         </div>
     </div>

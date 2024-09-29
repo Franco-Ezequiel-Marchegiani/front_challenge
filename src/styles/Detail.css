@@ -4,7 +4,7 @@
     background-color: #010316;
     font-family: "Roboto", sans-serif;
     max-width:100%;
-    padding-bottom: 60px;
+    padding-bottom: 100px;
 }
 
 .titleDetail{
@@ -62,4 +62,10 @@
 }
 .carrousel::-webkit-scrollbar {
     display: none; /* Oculta el scrollbar */
+}
+
+.btn_container_detail{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

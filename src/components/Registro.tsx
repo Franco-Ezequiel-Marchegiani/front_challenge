@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, useToast, Text } from '@chakra-ui/react';
-import '../styles/Login.css'
+import '../styles/Registro.css'
 
-const Login: React.FC = () => {
+const Registro: React.FC = () => {
   const toast = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -60,4 +60,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Registro;
