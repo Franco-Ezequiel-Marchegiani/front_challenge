@@ -3,6 +3,7 @@ import NavBar from './Navbar';
 import AlertHome from './Alert_Home';
 import BoxDetail from './BoxDetail';
 import Footer from './Footer';
+import { HamburgerIcon  } from '@chakra-ui/icons'
 
 const Home: React.FC = () => {
 
@@ -10,7 +11,7 @@ const Home: React.FC = () => {
     //Osea, lo que se haría sería pasarle el state con el array de objetos, y luego en el componente BoxDetail, se mapea y repite la info, acorde sea enviada por props
     return (
     <div className="App">
-        <NavBar/>
+        <NavBar icon={HamburgerIcon}/>
         <AlertHome/>
         <BoxDetail title={'Todas las opciones'}/>
         <BoxDetail title={'Opciones en California'}/>

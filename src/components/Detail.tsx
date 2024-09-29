@@ -5,7 +5,7 @@ import Footer from './Footer';
 import OpinionesDetail from './OpinionesDetail';
 import { Box, Card, Image, Text, VStack } from '@chakra-ui/react';
 import { ReactComponent as IconLocation } from '../icon/location-pin-svgrepo-com.svg';
-import { PhoneIcon } from '@chakra-ui/icons';
+import { PhoneIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import '../styles/Detail.css'
 
 const Detail: React.FC = () => {
@@ -36,7 +36,7 @@ const Detail: React.FC = () => {
     //Osea, lo que se haría sería pasarle el state con el array de objetos, y luego en el componente BoxDetail, se mapea y repite la info, acorde sea enviada por props
     return (
     <div className="detail">
-        <NavBar/>
+        <NavBar icon={ArrowBackIcon}/>
         <div className="DetailContainer">
           <h1 className='titleDetail'>Bar Nim</h1>
           <div className='DetailTextContainer'>
@@ -49,10 +49,13 @@ const Detail: React.FC = () => {
           <Box
               ref={scrollRef}
               className='carrousel'
-            >
-              <Card maxW='md'
-                direction={{ base: 'column', sm: 'row' }}
-
+              flexDirection="row"
+              flexWrap="nowrap"
+              >
+              <Card 
+                maxW='md'
+                direction={{ base: 'row', sm: 'row' }}
+                backgroundColor={'#010316'}
               >
                   <Image
                     objectFit='cover'
@@ -60,26 +63,75 @@ const Detail: React.FC = () => {
                     alt='Chakra UI'
                     maxW={{ base: '30%', sm: '30%', md: '156px' }}
                     maxH={{ base: '30%', sm: '30%', md: '104px' }}
-
+                    borderRadius="12px" 
+                    marginRight="16px"
                   />
                   <Image
-                  objectFit='cover'
-                  src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-                  alt='Chakra UI'
-                  maxW={{ base: '30%', sm: '30%', md: '156px' }}
-                  maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    objectFit='cover'
+                    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    alt='Chakra UI'
+                    maxW={{ base: '30%', sm: '30%', md: '156px' }}
+                    maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    borderRadius="12px" 
+                    marginRight="16px"
                   />
                   <Image
-                  objectFit='cover'
-                  src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-                  alt='Chakra UI'
-                  maxW={{ base: '30%', sm: '30%', md: '156px' }}
-                  maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    objectFit='cover'
+                    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    alt='Chakra UI'
+                    maxW={{ base: '30%', sm: '30%', md: '156px' }}
+                    maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    borderRadius="12px" 
+                    marginRight="16px"
+                  />
+                  <Image
+                    objectFit='cover'
+                    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    alt='Chakra UI'
+                    maxW={{ base: '30%', sm: '30%', md: '156px' }}
+                    maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    borderRadius="12px" 
+                    marginRight="16px"
+                  />
+                  <Image
+                    objectFit='cover'
+                    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    alt='Chakra UI'
+                    maxW={{ base: '30%', sm: '30%', md: '156px' }}
+                    maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    borderRadius="12px" 
+                    marginRight="16px"
+                  />
+                  <Image
+                    objectFit='cover'
+                    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    alt='Chakra UI'
+                    maxW={{ base: '30%', sm: '30%', md: '156px' }}
+                    maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    borderRadius="12px" 
+                    marginRight="16px"
+                  />
+                  <Image
+                    objectFit='cover'
+                    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    alt='Chakra UI'
+                    maxW={{ base: '30%', sm: '30%', md: '156px' }}
+                    maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    borderRadius="12px" 
+                    marginRight="16px"
+                  />
+                  <Image
+                    objectFit='cover'
+                    src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                    alt='Chakra UI'
+                    maxW={{ base: '30%', sm: '30%', md: '156px' }}
+                    maxH={{ base: '30%', sm: '30%', md: '104px' }}
+                    borderRadius="12px" 
+                    marginRight="16px"
                   />
               </Card>
           </Box>
           
-          <BoxDetail title={'Todas las opciones'}/>
           <h2 className='subtitleDetail'>Opiniones</h2>
           <OpinionesDetail/>
           <OpinionesDetail/>
