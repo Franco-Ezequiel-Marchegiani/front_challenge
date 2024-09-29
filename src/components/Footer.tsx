@@ -1,6 +1,7 @@
 import { CalendarIcon, ChatIcon } from '@chakra-ui/icons';
 import React from 'react';
 import { ReactComponent as HomeIcon } from '../icon/Home_icon.svg';
+import { ReactComponent as HomeIconSelected } from '../icon/Home_icon_selected.svg';
 import '../styles/Footer.css'
 import { useLocation } from 'react-router-dom';
 
@@ -24,8 +25,13 @@ const Footer: React.FC = () => {
                 <p>Calendario</p>
             </div>
             <div className='iconButtonContainer_Footer'>
-                <HomeIcon style={{ fill: isHome ? '#3540E8' : 'white' }}/>
-                <p style={logoStyles}>Home</p>
+                
+            {isHome ? 
+            <HomeIconSelected/>
+            :
+            <HomeIcon/>
+            }
+            <p style={logoStyles}>Home</p>
             </div>
             <div className='iconButtonContainer_Footer'>
                 <ChatIcon w={4} h={4}/>
