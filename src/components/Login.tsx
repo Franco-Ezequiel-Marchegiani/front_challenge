@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, useToast, Text } from '@chakra-ui/react';
 import '../styles/Login.css'
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
+  const navigate = useNavigate(); //Hook para navegar entre las rutas
   const toast = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -17,6 +19,9 @@ const Login: React.FC = () => {
     });
   };
 
+  const handleBackHome = () =>{
+    navigate('/signin')
+  }
   return (
     <main className='registro_form_container'>
         <Box
@@ -30,7 +35,7 @@ const Login: React.FC = () => {
         width="sm"
       >
         <Heading mb={4} color="white">
-          Registro
+          Login
         </Heading>
         <form onSubmit={handleSubmit}>
           <VStack spacing={4} align="stretch">
@@ -51,8 +56,9 @@ const Login: React.FC = () => {
             </FormControl>
 
             <Button type="submit" colorScheme="blue" mt={4}>
-              Registrarse
+              Ingresar
             </Button>
+            <Text color={"#fff"} fontSize={"15px"} _hover={{cursor: 'pointer'}}>No tienes cuenta? Registrate haciendo <b onClick={handleBackHome}>click aquí</b></Text>
           </VStack>
         </form>
       </Box>
