@@ -3,6 +3,7 @@ import { Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, HSt
 import React, { useEffect, useRef } from 'react';
 import { ReactComponent as IconLocation } from '../icon/location-pin-svgrepo-com.svg';
 import '../styles/BoxDetail.css'
+import { useNavigate } from 'react-router-dom';
 
 interface DetailProps {
     title: string;
@@ -10,6 +11,7 @@ interface DetailProps {
 
 const BoxDetail: React.FC<DetailProps> = (props) => {
     const {title} = props
+    const navigate = useNavigate(); //Hook para navegar entre las rutas
 
     const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -34,7 +36,10 @@ const BoxDetail: React.FC<DetailProps> = (props) => {
         };
     }, []);
     
-
+    //Función para ir al detalle de la opción que el usuario seleccionó
+    const handleBackHome = () =>{
+        navigate('/Detail')
+    }
   return (
     <div className="Box_detail_Container">
       <p className='title_detail'>{title}</p>
@@ -80,6 +85,7 @@ const BoxDetail: React.FC<DetailProps> = (props) => {
                                     _hover={{
                                         bgGradient: "linear(to-r, #6674F4, #FF69E2)",  // Degradado más claro en hover
                                       }}
+                                    onClick={handleBackHome}
                                 >
                                     Ver más
                                 </Button>
