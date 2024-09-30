@@ -6,6 +6,7 @@ import Footer from './Footer';
 import { HamburgerIcon  } from '@chakra-ui/icons'
 import axios from 'axios';
 
+
 interface Brewery {
   id: string;
   name: string;
@@ -38,7 +39,9 @@ const Home: React.FC = () => {
 
   const [refreshing, setRefreshing] = useState<boolean>(false)
 
-  const urlBase = 'http://localhost:5056/breweries'
+  const urlBase = process.env.REACT_APP_URL_BASE || 'http://localhost:5056/breweries';
+  
+  //const urlBase = 'http://localhost:5056/breweries'
     useEffect(() => {
       //Extraemos todos los datos en esta llamada
         axios.get(urlBase).then((response) =>{
@@ -61,7 +64,6 @@ const Home: React.FC = () => {
       setRefreshing(true)
       //Extraemos la info por ciudad, tomando de referencia el estado (Trae por defecto info de Norman)
       axios.get(`${urlBase}/city/${citySelected}`).then((response) =>{
-        console.log(response);
         
         setDataPerCity(response.data)
         setRefreshing(false)

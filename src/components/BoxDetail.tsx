@@ -67,15 +67,13 @@ const BoxDetail: React.FC<DetailProps> = (props) => {
     //Obtenemos la ciudad que el usuario seleccionó, y se la pasamos al componente padre para que haga la consulta
     const handleCitySelected = (city: string)=> {
         setCitySelected(city);
-        console.log(`Ciudad seleccionada: ${city}`);
         
     }
     
     //Función para ir al detalle de la opción que el usuario seleccionó
-    const handleBackHome = () =>{
-        navigate('/Detail')
+    const handleBackHome = (id: string) =>{
+        navigate(`/Detail/${id}`)
     }
-    console.log(cities?.cities);
     
   return (
     <div className="Box_detail_Container">
@@ -164,7 +162,7 @@ const BoxDetail: React.FC<DetailProps> = (props) => {
                                                 _hover={{
                                                     bgGradient: "linear(to-r, #6674F4, #FF69E2)",  // Degradado más claro en hover
                                                 }}
-                                                onClick={handleBackHome}
+                                                onClick={() => handleBackHome(brewery.id)}
                                             >
                                                 Ver más
                                             </Button>

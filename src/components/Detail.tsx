@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import NavBar from './Navbar';
 import BoxDetail from './BoxDetail';
 import Footer from './Footer';
@@ -7,13 +7,38 @@ import { Box, Button, Card, Image, Text, VStack } from '@chakra-ui/react';
 import { ReactComponent as IconLocation } from '../icon/location-pin-svgrepo-com.svg';
 import { PhoneIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import '../styles/Detail.css'
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
+interface Brewery {
+  id: string;
+  name: string;
+  brewery_type: string;
+  address_1: string;
+  address_2: string | null;
+  address_3: string | null;
+  city: string;
+  state_province: string;
+  postal_code: string;
+  country: string;
+  longitude: string;
+  latitude: string;
+  phone: string;
+  website_url: string;
+  state: string;
+  street: string;
+}
 const Detail: React.FC = () => {
 
+    const urlBase = process.env.REACT_APP_URL_BASE || 'http://localhost:5056/breweries';
+    const [data, setData] = useState<Brewery[]>([]);
+
+    const { id } = useParams<{id: string}>();
+    
     const scrollRef = useRef<HTMLDivElement | null>(null);
 
-      useEffect(() => {
-          // Función para manejar el scroll horizontal usando la rueda del mouse
+    // Función para manejar el scroll horizontal usando la rueda del mouse
+    useEffect(() => {
           const handleScroll = (event: WheelEvent) => {
               if (scrollRef.current) {
                   if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
@@ -31,7 +56,18 @@ const Detail: React.FC = () => {
               // Limpiar el evento en el desmontaje
               currentRef?.removeEventListener('wheel', handleScroll);
           };
-      }, []);
+    }, []);
+    //Llamada API por ID
+    useEffect(() =>{
+      axios.get(`${urlBase}/${id}`).then((response) =>{
+          setData(response.data)
+      }).catch((error) => {
+          console.error('Error al hacer la solicitud:', error);
+        });
+    },[])
+
+    console.log(data);
+    
     //Acá vendría la consulta a la API, pasando la info por props al BoxDetail, para que rellene cada campo
     //Osea, lo que se haría sería pasarle el state con el array de objetos, y luego en el componente BoxDetail, se mapea y repite la info, acorde sea enviada por props
     return (
