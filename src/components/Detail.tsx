@@ -149,32 +149,7 @@ const Detail: React.FC = () => {
                 >
                   Reservar mesa
             </Button>
-            <Button
-              width="342px"
-              marginTop="16px"
-              marginBottom="24px"
-              color="#FFFFFF"
-              backgroundColor="#010316" // Fondo negro
-              border="2px solid transparent" // Borde transparente para poder mostrar el degradado
-              borderRadius="8px"
-              position="relative" // Necesario para posicionar el pseudo-elemento
-              _hover={{
-                backgroundColor: '#333333', // Cambia el fondo al pasar el mouse
-              }}
-            >
-              <Box
-                position="absolute"
-                top={0}
-                left={0}
-                right={0}
-                bottom={0}
-                borderRadius="8px"
-                border="2px solid transparent"
-                bgGradient="linear(to-r, #6674F4, #FF69E2)" // Degradado para el borde
-                zIndex={-1} // Ponerlo detrás del botón
-              />
-                    Opciones de transporte
-            </Button>
+              <button className="gradient-border-button">Opciones de transporte</button>
           </div>
           <Footer/>
         </div>

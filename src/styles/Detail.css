@@ -69,3 +69,21 @@
     align-items: center;
     flex-direction: column;
 }
+
+.gradient-border-button {
+    padding: 12px 24px;
+    background-color: #010316; /* Fondo negro */
+    color: white;
+    width: 342px;
+    font-size: 16px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer; /* Mostrar que el botón es clickeable */
+    transition: background-color 0.3s ease;
+    background: 
+    linear-gradient(#010316, #010316) padding-box,
+    linear-gradient(60deg, #3540E8, #E41AD6) border-box;
+
+  }
+  
