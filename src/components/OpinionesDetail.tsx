@@ -25,6 +25,8 @@ const OpinionesDetail: React.FC = () => {
                     <Button 
                         color={'#E41AD6'} 
                         backgroundColor={'#010316'}
+                        fontSize="12px"
+                        fontWeight='400'
                         _hover={{
                             bgColor: "#151518",  // Degradado más claro en hover
                           }}>
@@ -33,10 +35,8 @@ const OpinionesDetail: React.FC = () => {
                 </Flex>
             </CardHeader>
             <CardBody>
-                <Text align="start">
-                With Chakra UI, I wanted to sync the speed of development with the speed
-                of design. I wanted the developer to be just as excited as the designer to
-                create a screen.
+                <Text align="start" fontWeight='400' fontSize={'14px'}>
+                Me encantan este tipo de cafés! La velocidad de wifi es muy bue...
                 </Text>
             </CardBody>
         </Card>

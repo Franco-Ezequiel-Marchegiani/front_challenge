@@ -1,10 +1,9 @@
-import { ChevronDownIcon, PhoneIcon, SearchIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, PhoneIcon } from '@chakra-ui/icons';
 import { Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, HStack, Image, Menu, MenuButton, MenuItem, MenuList, SimpleGrid, Spinner, Text, VStack } from '@chakra-ui/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ReactComponent as IconLocation } from '../icon/location-pin-svgrepo-com.svg';
 import '../styles/BoxDetail.css'
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 interface Cities{
     cities: string[];

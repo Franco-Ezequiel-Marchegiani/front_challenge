@@ -58,7 +58,7 @@ const Home: React.FC = () => {
             console.error('Error al hacer la solicitud:', error);
         });
 
-    }, [])
+    }, [urlBase])
 
     useEffect(() =>{
       setRefreshing(true)
@@ -70,7 +70,7 @@ const Home: React.FC = () => {
       }).catch((error) => {
           console.error('Error al hacer la solicitud:', error);
       });
-    }, [citySelected])
+    }, [urlBase, citySelected])
     
     //Acá vendría la consulta a la API, pasando la info por props al BoxDetail, para que rellene cada campo
     //Osea, lo que se haría sería pasarle el state con el array de objetos, y luego en el componente BoxDetail, se mapea y repite la info, acorde sea enviada por props
