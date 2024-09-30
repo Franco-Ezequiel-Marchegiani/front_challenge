@@ -7,7 +7,9 @@
     top: 4px;
     right: 2px;
 }
-
+.title_filter_container{
+    display: flex;
+}
 .Box_detail_Container{
     padding: 20px 0px 12px 23.5px;
 }
@@ -18,6 +20,7 @@
     font-size: 32px;
     line-height: 35px;
     text-align: start;
+    padding-right: 20px;
 }
 
 .boxDetail{

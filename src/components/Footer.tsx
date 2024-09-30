@@ -16,7 +16,6 @@ const Footer: React.FC = () => {
         color: isHome ? '#3540E8' : 'white', // Cambia 'blue' por el color que desees para la ruta '/'
         transition: 'color 0.3s', // Transición suave del color
     };
-    console.log(isHome);
     
     return (
         <footer className='footer_container'>
