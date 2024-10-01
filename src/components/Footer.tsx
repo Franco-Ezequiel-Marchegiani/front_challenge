@@ -5,9 +5,10 @@ import { ReactComponent as HomeIconSelected } from '../icon/Home_icon_selected.s
 import '../styles/Footer.css'
 import { useLocation } from 'react-router-dom';
 
+import useNavigateTo from '../Hooks/useNavigateTo';
+
 const Footer: React.FC = () => {
     const location = useLocation();
-    
     // Determinar si estamos en la ruta '/'
     const isHome = location.pathname === '/';
 
@@ -16,6 +17,11 @@ const Footer: React.FC = () => {
         color: isHome ? '#3540E8' : 'white', // Cambia 'blue' por el color que desees para la ruta '/'
         transition: 'color 0.3s', // Transición suave del color
     };
+
+    const goToRoute = useNavigateTo();
+    const handleBackHome = () =>{
+        goToRoute('/')
+    }
     
     return (
         <footer className='footer_container'>
@@ -26,9 +32,9 @@ const Footer: React.FC = () => {
             <div className='iconButtonContainer_Footer'>
                 
             {isHome ? 
-            <HomeIconSelected/>
+            <HomeIconSelected onClick={handleBackHome}/>
             :
-            <HomeIcon/>
+            <HomeIcon onClick={handleBackHome}/>
             }
             <p style={logoStyles}>Home</p>
             </div>

@@ -56,7 +56,7 @@ const Detail: React.FC = () => {
             // Limpiar el evento en el desmontaje
             currentRef?.removeEventListener('wheel', handleScroll);
         };
-    }, []);
+    }, [data]); //Se coloca el "data" para que se aplique cuando la data se encuentre disponible
     //Llamada API por ID
     useEffect(() =>{
       axios.get(`${urlBase}/${id}`).then((response) =>{
