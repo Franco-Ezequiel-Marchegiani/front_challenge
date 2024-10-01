@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, useToast, Text, Progress } from '@chakra-ui/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Box, Button, FormControl, FormLabel, Input, Heading, VStack, useToast, ToastId, Text, Progress } from '@chakra-ui/react';
 import '../styles/Registro.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Registro: React.FC = () => {
-  //Definimos los estados
-  const [passwordProgress, setPasswordProgress] = useState(0)
-  const [color, setColor] = useState<string>('red');
+  const { token } = useAuth();
 
+  //Definimos los estados
+  const [passwordProgress, setPasswordProgress] = useState<number>(0)
+  const [color, setColor] = useState<string>('red');
+  const [counter, setCounter] = useState<number>(5)
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -16,7 +20,19 @@ const Registro: React.FC = () => {
   //Manejo de errores
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+
   const toast = useToast();
+  const navigate = useNavigate(); 
+
+  const toastIdRef = useRef<ToastId | null>(null); // Solo permitimos tipos compatibles con ToastId, no 'string'
+
+  //Antes que nada, verifica si el usuario ya está registrado:
+
+  useEffect(() => {
+    if (token) {
+      navigate('/'); // Redirige si ya está autenticado
+    }
+  }, [token, navigate]);
 
   console.log(formData);
 
@@ -60,7 +76,6 @@ const Registro: React.FC = () => {
 
         }
     }
-    //validatePassword()
   };
 
   //Envío de datos
@@ -76,18 +91,38 @@ const Registro: React.FC = () => {
       if (response.status === 201 || response.status === 200) {
         console.log("Registro exitoso:", response.data);
         setSuccess(true);  // Marcamos éxito
-        toast({
-          title: "Registro exitoso.",
-          description: "Te has registrado correctamente.",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-        });
+        // Crear el toast y guardar el ID en la referencia
+        if (!toastIdRef.current) {
+          toastIdRef.current = toast({
+            title: "Registro exitoso.",
+            description: `Serás redirigido al login en ${counter} segundos...`,
+            status: "success",
+            duration: null,
+            isClosable: true,
+          });
+        }
+
+        // Iniciamos la cuenta regresiva
+        const countdown = setInterval(() => {
+          setCounter((prevCounter) => prevCounter - 1);
+        }, 1000);
+
+        // Después de 5 segundos, redirigimos al usuario al login
+        setTimeout(() => {
+          clearInterval(countdown); // Limpiamos el intervalo
+          // Aseguramos que no sea null antes de cerrarlo
+          if (toastIdRef.current) {
+            toast.close(toastIdRef.current); // Cerramos el toast
+            toastIdRef.current = null; // Limpiamos la referencia
+          }
+          navigate("/login"); // Redirigimos a la ruta de login
+        }, 5000);
+
       }else {
-        console.log("Hubo un error:", response);
-        // Si el servidor responde con un status que no es éxito
-        throw new Error(`Error: ${response.status}`);
-      }
+            console.log("Hubo un error:", response);
+            // Si el servidor responde con un status que no es éxito
+            throw new Error(`Error: ${response.status}`);
+          }
     } catch (error: any) {
       // Manejamos los posibles errores
       console.error("Error en el registro:", error.response || error.data.error);
@@ -107,9 +142,15 @@ const Registro: React.FC = () => {
     
   };
 
-  /* 
-  
-  */
+  //Utilizamos useEffect para actualizar el toast para que haga la cuenta regresiva mientras esté activo
+  useEffect(() => {
+    if (counter > 0 && toastIdRef.current) {
+      // Actualizar el contenido del toast existente usando el ID
+      toast.update(toastIdRef.current, {
+        description: `Serás redirigido al login en ${counter} segundos...`,
+      });
+    }
+  }, [counter, toast]);
 
   return (
     <main className='registro_form_container'>

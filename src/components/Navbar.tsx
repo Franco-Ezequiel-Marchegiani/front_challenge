@@ -4,12 +4,15 @@ import { ReactComponent as MyIcon } from '../icon/User_icon.svg';
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/Navbar.css'
-import { background, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, IconButton, Input, Text, useDisclosure } from '@chakra-ui/react';
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, IconButton, Text, useDisclosure } from '@chakra-ui/react';
+import { useAuth } from '../context/AuthContext';
 
 interface MyIconComponent{
     icon: React.ElementType ;
 }
 const NavBar: React.FC<MyIconComponent> = ({icon: IconComponent}) => {
+    const { logout } = useAuth();
+
     const navigate = useNavigate(); //Hook para navegar entre las rutas
     
     //Función para enviar al usuario al inicio
@@ -17,6 +20,7 @@ const NavBar: React.FC<MyIconComponent> = ({icon: IconComponent}) => {
         navigate('/')
     }
     const handleLogOut = () =>{
+        logout()
         navigate('/login')
     }
 
