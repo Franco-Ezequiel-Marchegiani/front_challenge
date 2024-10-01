@@ -18,7 +18,9 @@ const Registro: React.FC = () => {
     password: ''
   });
   //Manejo de errores
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [success, setSuccess] = useState<boolean>(false);
 
   const toast = useToast();
@@ -34,7 +36,6 @@ const Registro: React.FC = () => {
     }
   }, [token, navigate]);
 
-  console.log(formData);
 
   const validatePassword = (password: string) => {
     //Definimos las validaciones de la contraseña
@@ -56,9 +57,6 @@ const Registro: React.FC = () => {
   // Función para manejar los cambios en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    console.log(name);
-    console.log(value);
     
     setFormData({
       ...formData,
@@ -89,7 +87,6 @@ const Registro: React.FC = () => {
 
       // Si la respuesta es exitosa
       if (response.status === 201 || response.status === 200) {
-        console.log("Registro exitoso:", response.data);
         setSuccess(true);  // Marcamos éxito
         // Crear el toast y guardar el ID en la referencia
         if (!toastIdRef.current) {
@@ -126,7 +123,6 @@ const Registro: React.FC = () => {
     } catch (error: any) {
       // Manejamos los posibles errores
       console.error("Error en el registro:", error.response || error.data.error);
-      console.log(error.response.data.error);
       const messageError = error.response.data.error
       
       toast({

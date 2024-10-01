@@ -12,7 +12,9 @@ const Login: React.FC = () => {
     email: '',
     password: ''
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [success, setSuccess] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -50,9 +52,7 @@ const Login: React.FC = () => {
 
       // Si la respuesta es exitosa
       if (response.status === 201 || response.status === 200) {
-        console.log("Registro exitoso:", response.data);
         const { token } = response.data
-        console.log(token);
         //Pasamos el token de manera global
         login(token)
         setSuccess(true);  // Marcamos éxito

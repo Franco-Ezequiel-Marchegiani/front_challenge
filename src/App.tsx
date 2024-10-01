@@ -11,7 +11,6 @@ import PrivateRoute from './PrivateRoute';
 const App: React.FC =() => {
 
   const { token } = useAuth();
-  console.log(token);
   
   return (
     <BrowserRouter>
