@@ -52,9 +52,12 @@ const Login: React.FC = () => {
 
       // Si la respuesta es exitosa
       if (response.status === 201 || response.status === 200) {
-        const { token } = response.data
+        
+        const { token, user } = response.data
+        const emailFromUser = user.email
+        
         //Pasamos el token de manera global
-        login(token)
+        login({ token, email: emailFromUser });
         setSuccess(true);  // Marcamos éxito
         
         // Después de 5 segundos, redirigimos al usuario al login

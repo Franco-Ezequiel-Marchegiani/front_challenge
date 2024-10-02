@@ -6,13 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css'
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerOverlay, IconButton, Text, useDisclosure } from '@chakra-ui/react';
 import { useAuth } from '../context/AuthContext';
+import axios from 'axios';
+import ModalMessage from './Modal';
 
 interface MyIconComponent{
     icon: React.ElementType ;
 }
 const NavBar: React.FC<MyIconComponent> = ({icon: IconComponent}) => {
     const { logout } = useAuth();
-
+    
     const navigate = useNavigate(); //Hook para navegar entre las rutas
     
     //Función para enviar al usuario al inicio
@@ -59,6 +61,7 @@ const NavBar: React.FC<MyIconComponent> = ({icon: IconComponent}) => {
                     <DrawerCloseButton />
                     <DrawerBody paddingTop={'44px'}>
                             <Text align={'start'} _hover={{cursor: 'pointer', color:"#1e1e1e", backgroundColor: '#fbfbfb'}} onClick={handleLogOut}>Log out</Text>
+                            <ModalMessage/>
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>

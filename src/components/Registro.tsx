@@ -133,9 +133,7 @@ const Registro: React.FC = () => {
         isClosable: true,
       });
       setError(error.response?.data?.message || error.message);
-    }
-    // Aquí iría la lógica para enviar los datos
-    
+    }    
   };
 
   //Utilizamos useEffect para actualizar el toast para que haga la cuenta regresiva mientras esté activo

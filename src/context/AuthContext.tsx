@@ -4,7 +4,8 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 // Define el tipo de los datos que vas a manejar en el contexto
 interface AuthContextType {
   token: string | null;
-  login: (newToken: string) => void; // Añadir la función login
+  email: string | null;
+  login: (data: { token: string; email: string }) => void;
   logout: () => void; // Añadir la función logout
 }
 
@@ -14,27 +15,37 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 // Crea el proveedor del contexto
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     // Cargar el token desde localStorage al iniciar el componente
     const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken); // Establecer el token si existe
+    const storedEmail = localStorage.getItem('email');
+    if (storedToken && storedEmail) {
+      setToken(storedToken);
+      setEmail(storedEmail);
     }
   }, []);
 
   const logout = () => {
     setToken(null); // Limpiar token del estado
+    setEmail(null);
     localStorage.removeItem('token'); // Limpiar token de localStorage
+    localStorage.removeItem('email');
+
   };
 
-  const login = (newToken: string) => {
-    setToken(newToken); // Guardar el nuevo token
-    localStorage.setItem('token', newToken); // Guardar token en localStorage
+  const login = ({ token, email }: { token: string; email: string }) => {
+    setToken(token);
+    setEmail(email);
+
+    localStorage.setItem('token', token);
+    localStorage.setItem('email', email);
+
   };
 
   return (
-    <AuthContext.Provider value={{ token, logout, login }}>
+    <AuthContext.Provider value={{ token, email, logout, login }}>
       {children}
     </AuthContext.Provider>
   );
